@@ -1,5 +1,4 @@
 # region - Importaciones de clases y librerias
-import os
 from os import path, listdir, rename
 from paramiko import SSHClient, AutoAddPolicy
 

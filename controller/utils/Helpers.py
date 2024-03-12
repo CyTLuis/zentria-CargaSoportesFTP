@@ -1,7 +1,6 @@
 # region Importando librerias o clases necesarias
-import os, glob, shutil, zipfile
 from pathlib import Path
-from PIL import ImageTk, Image
+import os, glob, shutil, zipfile
 from cryptography.fernet import Fernet
 # endregion Importando librerias o clases necesarias
 
@@ -160,51 +159,3 @@ class Helpers:
         for f in os.listdir(dir):
             cont += 1
         return cont
-
-    # Region - Metodos de utilidad para uso de interfaz gráfica
-    # Toma una pantalla de Tkinter y la centra en la pantalla del usuario
-    def centerWindows(self, windows, height, withs):
-        anchoPantalla = windows.winfo_screenwidth()
-        largoPantalla = windows.winfo_screenheight()
-        x = int((anchoPantalla/2) - (withs/2))
-        y = int((largoPantalla/2) - (height/2))
-        return windows.geometry(f"{withs}x{height}+{x}+{y}")
-    
-    # Nos permite cargar una imagen de forma dinamica
-    def getImage(self, key, size):
-        """
-            Carga una imagen de un ruta dada, y la recorta al tamaño dado
-            - `Args:`
-                - key (str): Path o key value de la imagen
-                - size (tuple): Tupla de medidas (width, height)
-            - `Returns:`
-                (Objecto TkinterImage): Objeto de ImageTk con la imagen obtenida
-        """
-        image = Image.open(self.getRoutes(key, "Value")).resize(size, Image.ANTIALIAS)
-        return ImageTk.PhotoImage(image)  
-    
-    # Permite modificar el valor de un elemento GUI
-    def SetInfoElement(self, element, value):
-        """
-            Toma un objeto gráfico de Tkinter, modifica su valor
-            y luego deshabilita el objeto
-            - `Args:`
-                - element (tkinter object): Elemento de la interfaz gráfica a modificar
-                - value (str): Valor nuevo a mostrar en el elemento
-        """
-        element.configure(state = 'normal')
-        element.delete(0, "end")
-        element.insert(0, str(value))
-        element.configure(state = 'disabled')
-    
-    # Nos permite habilitar un elemento del GUI
-    def setEnableItem(self, element):
-        element.configure(state='normal')
-
-    # Nos permite deshabilitar un elemento del GUI
-    def setDisabledItem(self, element):
-        element.configure(state='disabled')
-    # Endregion - Metodos de utilidad para uso de interfaz gráfica
-        
-    # Endregion Metodos usados en la clase
-    

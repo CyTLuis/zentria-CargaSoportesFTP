@@ -3,10 +3,11 @@
 # ===========================================================================
 
 # Region -  Importaciones de archivos o librerias
+from sys import argv
+
 from controller.Log import Log
 from controller.Impresor import Impresor
 from controller.Orquestador import Orquestador
-from controller.utils.DataBase import DataBaseRPA
 # Endregion - Importaciones de archivos o librerias
 
 # ===========================================================================
@@ -20,16 +21,16 @@ consola = Impresor()
 # Endregion - Instancia de clases de archivos importado
 
 # Region - Body Metodo Principal
-def main():
+def main(fecha: str = "03-2024", eps: str = "NEPS", relacionEnvio: str = "123456"):
     try: 
         consola.imprimirInicio("Nombre de la Automatización")
         logger.registroInicioProcesos()
         logger.registrarLogProceso("Inicio de ejecución del proceso")
         
         # Region - Cuerpo de la automatización
-        orq.fechaRIPS = "03-2024"
-        orq.epsEjecucion = "NEPS"
-        orq.relacionEnvio = "123456"
+        orq.fechaRIPS = fecha
+        orq.epsEjecucion = eps
+        orq.relacionEnvio = relacionEnvio
         orq.orquestarCarga()
         # Endregion - Cuerpo de la automatización
         
@@ -42,4 +43,11 @@ def main():
 
 # Metodo para ejecución del Script, invocando la función main()    
 if __name__ == '__main__':
-    main()
+    # Obtención de parametros por argumentos.
+    if(len(argv) > 1):
+        fecha = argv[1]
+        eps= argv[2]
+        relacionEnvio= argv[3]
+        main(fecha, eps, relacionEnvio)
+    else:
+        main()
