@@ -23,7 +23,7 @@ consola = Impresor()
 # Region - Body Metodo Principal
 def main(fecha: str = "03-2024", eps: str = "NEPS", relacionEnvio: str = "123456"):
     try: 
-        consola.imprimirInicio("Nombre de la Automatización")
+        consola.imprimirInicio("Carga Soportes SFTP")
         logger.registroInicioProcesos()
         logger.registrarLogProceso("Inicio de ejecución del proceso")
         
